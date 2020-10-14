@@ -91,7 +91,7 @@ main {
 .container {
     background-color: var(--clr);
     width: 100%;
-    height: 900px;
+    height: 100%;
     box-shadow: 0 5px 10px -2px rgba($color: #000000, $alpha: 0.2);
     padding: 2em;
 
@@ -108,7 +108,7 @@ main {
     .row-1 {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        grid-auto-rows:100px ;
+        grid-auto-rows: 100px;
         grid-template-rows: repeat(5, 1fr);
         grid-auto-flow: column;
 
@@ -206,7 +206,7 @@ button {
     background-color: var(--success);
 }
 
-.modal{
+.modal {
     position: absolute;
     top: 0;
     left: 0;
@@ -217,10 +217,10 @@ button {
     justify-content: center;
     align-items: center;
     visibility: hidden;
-    
 
-    .content{
-        width:100%;
+
+    .content {
+        width: 100%;
         max-width: 350px;
         height: 450px;
         background-color: #fefefe;
@@ -230,11 +230,11 @@ button {
         align-items: flex-start;
         padding: 2em;
         transition: transform 0.4s ease;
-      
-        transform: scale(0);
-     
 
-        p{
+        transform: scale(0);
+
+
+        p {
             font-size: 0.8rem;
             font-family: var(--font);
             text-transform: uppercase;
@@ -242,31 +242,56 @@ button {
             font-weight: 500;
         }
 
-        h3{
+        h3 {
             @extend p;
-           
+
             font-weight: 700;
         }
     }
 }
-.modal-ani{
+
+.modal-ani {
     animation: modal 0.4s ease-in forwards;
 }
-.modal-visible{
+
+.modal-visible {
     visibility: visible;
 
 
 }
 
-.modal-hidden{
+.modal-hidden {
     transform: scale(0);
     visibility: hidden;
 }
-@keyframes modal{
-    0%{
+
+@keyframes modal {
+    0% {
         transform: scale(0);
     }
-    100%{
+
+    100% {
         transform: scale(1);
     }
+}
+
+@media screen and (max-width:600px){
+
+    nav{
+        flex-direction: column;
+        .logo{
+            margin-bottom: 1em;
+        }
+    }
+  
+    .container{
+        max-width: 480px;
+        overflow-x: hidden;
+
+        .row-1{
+          
+          
+        }
+    }
+
 }

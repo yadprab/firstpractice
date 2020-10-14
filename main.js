@@ -5,7 +5,11 @@ const count = document.querySelector('#count')
 const name = document.querySelector('#movie-name');
 const total = document.querySelector('#total');
 const classes = document.querySelector('#class');
-const title = document.querySelector('#movie-title')
+const title = document.querySelector('#movie-title');
+const modal = document.querySelector('.modal');
+const proceed = document.querySelector('#proceed');
+const over = document.querySelector('.overlay');
+const pay = document.querySelector('#pay');
 let price = parseInt(classes.value);
 let movieName = name.value;
 populateUI();
@@ -40,44 +44,61 @@ function updateSeat(){
 const userId = randomNum()
     
 const user = new Data(userId,movieName,totalPrice, slt, selectedSeats);
-const store = JSON.stringify(user);
+
+    pay.addEventListener('click', function(e){
+        e.preventDefault();
+        const store = JSON.stringify(user);
 localStorage.setItem('userData', store);
-  const pay = document.querySelector('#pay')
-    const modal = document.querySelector('.modal');
-    const proceed = document.querySelector('#proceed');
+
+  
     const id = document.querySelector('#userId');
     const seatN = document.querySelector('#seatNo');
     const movie = document.querySelector('#movie');
     const ttl = document.querySelector('#price');
-    const over = document.querySelector('.overlay');
+ 
    
     id.textContent = user.id;
     seatN.textContent = user.seatId;
     movie.textContent = user.movies;
     ttl.textContent = user.price
+      
+    if((name.value ==='pick your movie')|| (classes.value== 0)){
+        window.alert('select movie and class')
+       
+         } else{
+    
+            modal.classList.add('modal-visible');
+            over.classList.add('modal-hidden');
+            const cont = document.querySelector('.content');
+            setTimeout(()=>{
+                cont.classList.add('modal-ani')
+            
+            }, 1000);
+            
+            
+            proceed.addEventListener('click',function(e){
+                e.preventDefault();
+               
+                
+                modal.classList.remove('modal-visible');
+                over.classList.remove('modal-hidden');
+               
+            
+               
+            
+            
+              
+            })
+            
+            
+    
+    
+        }
+       
+    })
  
 
-    pay.addEventListener('click', function(e){
-        e.preventDefault();
-        modal.classList.add('modal-visible');
-        over.classList.add('modal-hidden');
-        const cont = document.querySelector('.content');
-      
-        setTimeout(()=>{
-            cont.classList.add('modal-ani')
-
-        }, 1000);
-       
-
-        proceed.addEventListener('click',function(e){
-            e.preventDefault();
-            modal.classList.remove('modal-visible');
-            over.classList.remove('modal-hidden')
-        })
-
-
-      
-     })
+  
     
 }
 container.addEventListener('click', function(e){
@@ -108,15 +129,29 @@ function randomNum(){
 
 function populateUI(){
     const dataStorage = JSON.parse(localStorage.getItem('userData'));
-    console.log(dataStorage );
+    const stId = dataStorage.seatId;
     console.log(dataStorage.seatId);
-    seats.forEach((st, index)=>{
-       if(dataStorage.seatId.indexOf(index)>-1){
-          st.classList.add('occupied')
-         
-       }
-    })
+
+    if((stId.length>0) && (stId !== null)){
+        seats.forEach((sts, index)=>{
+            if(stId.indexOf(index)> -1){
+                sts.classList.remove('selected')
+              sts.classList.add('occupied')
+            }
+ 
+        })
+     }
+  
+    
+        
+  
+            
+   
+   
+
+       
    
 }
-updateSeat();
+updateSeat()
+
 
