@@ -12,7 +12,8 @@
             <h1>cinemas</h1>
         </div>
        <div class="select-area">
-        <select name="movie" id="movie-name">
+        <select name="movie" id="movie-name" >
+            <option value="pick your movie" disabled selected>pick your movie</option>
             <option value="godfather">godfather</option>
             <option value="avengers">avengers</option>
             <option value="rushmore">rushmore</option>
@@ -454,7 +455,7 @@
    </main>
    <div class="overlay">
     <div class="col-4">
-        <h2 id="movie-title">godfather</h2>
+        <h2 id="movie-title">pick your movie </h2>
     </div>
 
     <div class="col-5">
@@ -465,10 +466,25 @@
     </div>
 
     <div class="but">
-        <button>pay now</button>
+        <button id="pay">pay now</button>
     </div>
 </div>
 
+<div class="modal">
+  <div class="content">
+
+    <h3>thank you for choosing our cinemas</h3>
+
+    <p>yourId: <span id="userId"></span></p>
+     <p>seatNo: <span id="seatNo"></span></p>
+     <p>movie: <span id="movie"></span></p>
+     <p>price:₹<span id="price"></span></p>
+   
+ 
+
+    <button id="proceed">proceed</button>
+  </div>
+</div>
 
 <script src="main.js"></script>
 </body>

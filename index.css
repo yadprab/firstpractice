@@ -6,9 +6,7 @@
   --error: hsl(356, 69%, 56%);
   --success: hsl(143, 92%, 51%);
   --focus: hsl(37, 97%, 70%);
-  --clr3:#00ffee
-
-
+  --clr3: #00ffee
 ;
 }
 
@@ -130,6 +128,7 @@ main {
   display: grid;
   -ms-grid-columns: (1fr)[5];
       grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 100px;
   -ms-grid-rows: (1fr)[5];
       grid-template-rows: repeat(5, 1fr);
   grid-auto-flow: column;
@@ -176,7 +175,7 @@ main {
   text-transform: uppercase;
 }
 
-.overlay p {
+.overlay p, .overlay .modal .content h3, .modal .content .overlay h3 {
   font-size: 0.8rem;
 }
 
@@ -233,5 +232,99 @@ button {
 
 .selected {
   background-color: var(--success);
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  visibility: hidden;
+}
+
+.modal .content {
+  width: 100%;
+  max-width: 350px;
+  height: 450px;
+  background-color: #fefefe;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 2em;
+  -webkit-transition: -webkit-transform 0.4s ease;
+  transition: -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.modal .content p, .modal .content h3 {
+  font-size: 0.8rem;
+  font-family: var(--font);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.modal .content h3 {
+  font-weight: 700;
+}
+
+.modal-ani {
+  -webkit-animation: modal 0.4s ease-in forwards;
+          animation: modal 0.4s ease-in forwards;
+}
+
+.modal-visible {
+  visibility: visible;
+}
+
+.modal-hidden {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  visibility: hidden;
+}
+
+@-webkit-keyframes modal {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes modal {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 /*# sourceMappingURL=index.css.map */
