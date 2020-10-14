@@ -12,7 +12,7 @@ console.log(price);
 const seatArr = Array.from(seats);
 console.log(seatArr);
 
-
+console.log(title);
 function updateSeat(){
     const selected = document.querySelectorAll('.row-1 .seat.selected');
     const slt = selected.length;
