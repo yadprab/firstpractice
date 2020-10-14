@@ -49,6 +49,7 @@ localStorage.setItem('userData', store);
     const seatN = document.querySelector('#seatNo');
     const movie = document.querySelector('#movie');
     const ttl = document.querySelector('#price');
+    const over = document.querySelector('.overlay');
    
     id.textContent = user.id;
     seatN.textContent = user.seatId;
@@ -59,15 +60,19 @@ localStorage.setItem('userData', store);
     pay.addEventListener('click', function(e){
         e.preventDefault();
         modal.classList.add('modal-visible');
+        over.classList.add('modal-hidden');
         const cont = document.querySelector('.content');
+      
         setTimeout(()=>{
             cont.classList.add('modal-ani')
 
-        }, 1000)
+        }, 1000);
+       
 
         proceed.addEventListener('click',function(e){
             e.preventDefault();
             modal.classList.remove('modal-visible');
+            over.classList.remove('modal-hidden')
         })
 
 
@@ -104,7 +109,13 @@ function randomNum(){
 function populateUI(){
     const dataStorage = JSON.parse(localStorage.getItem('userData'));
     console.log(dataStorage );
-    console.log(dataStorage.movies);
+    console.log(dataStorage.seatId);
+    seats.forEach((st, index)=>{
+       if(dataStorage.seatId.indexOf(index)>-1){
+          st.classList.add('occupied')
+         
+       }
+    })
    
 }
 updateSeat();
